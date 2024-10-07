@@ -1,0 +1,47 @@
+/* AddCoupon.css */
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #007bff; /* Brand color */
+}
+
+form {
+  max-width: 400px; /* Set a max width for the form */
+  margin: 0 auto; /* Center the form */
+  display: flex;
+  flex-direction: column; /* Stack form elements vertically */
+  padding: 20px; /* Add padding */
+  border: 1px solid #ddd; /* Border around the form */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light background */
+}
+
+form div {
+  margin-bottom: 15px; /* Space between form elements */
+}
+
+label {
+  margin-bottom: 5px; /* Space below labels */
+  font-weight: bold; /* Bold labels */
+}
+
+input {
+  padding: 10px; /* Padding inside input fields */
+  border: 1px solid #ddd; /* Border for input fields */
+  border-radius: 5px; /* Rounded corners */
+}
+
+button {
+  padding: 10px;
+  background-color: #007bff; /* Button color */
+  color: white; /* Text color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth background transition */
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}

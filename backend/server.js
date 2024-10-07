@@ -19,6 +19,7 @@ const couponSchema = new mongoose.Schema({
     code: String,
     expirationDate: Date,
     category: String, // Add category field
+    logo: String, // Add logo field for brand logos
 });
 
 const Coupon = mongoose.model('Coupon', couponSchema);
@@ -27,6 +28,18 @@ const Coupon = mongoose.model('Coupon', couponSchema);
 app.get('/api/coupons', async (req, res) => {
     const coupons = await Coupon.find();
     res.json(coupons);
+});
+
+// API endpoint to add a coupon
+app.post('/api/coupons', async (req, res) => {
+    const { brand, code, expirationDate, category, logo } = req.body;
+    const newCoupon = new Coupon({ brand, code, expirationDate, category, logo });
+    try {
+        await newCoupon.save();
+        res.status(201).json(newCoupon);
+    } catch (error) {
+        res.status(400).json({ message: 'Error adding coupon', error });
+    }
 });
 
 app.listen(PORT, () => {

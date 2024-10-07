@@ -1,0 +1,65 @@
+.banner {
+  background: #007bff;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.coupons-area {
+  padding: 20px;
+  display: flex;
+  justify-content: center; /* Center the coupons area */
+}
+
+.coupons-list {
+  list-style: none;
+  padding: 0;
+  width: 100%; /* Allow the list to take full width */
+  max-width: 600px; /* Set a max width for better alignment */
+}
+
+.coupon-item {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 10px 0;
+  padding: 15px;
+  background-color: #f9f9f9; /* Light background */
+  transition: background-color 0.3s; /* Smooth background transition */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+.coupon-item:hover {
+  background-color: #e0e0e0; /* Darker gray on hover */
+}
+
+.coupon-header {
+  display: flex;
+  justify-content: space-between; /* Space between brand and toggle */
+  align-items: center;
+}
+
+.coupon-brand {
+  font-weight: bold; /* Bold brand name */
+  color: #007bff; /* Brand color */
+}
+
+.coupon-details {
+  margin-top: 5px; /* Space above details */
+  color: #333; /* Darker text for details */
+}
+
+.coupon-reveal {
+  margin-top: 10px; /* Space above reveal text */
+  color: #555; /* Gray color for the text */
+  font-style: italic; /* Italic style */
+  cursor: pointer; /* Change cursor to pointer */
+  color: #007bff; /* Blue color for the clickable text */
+  text-decoration: underline; /* Underline for emphasis */
+}
+
+.toggle-details {
+  margin-left: 10px;
+  font-size: 20px; /* Icon size */
+  color: #007bff; /* Color for the icon */
+  font-size: 0.8em;
+}

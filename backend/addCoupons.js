@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 // MongoDB connection
-mongoose.connect('mongodb://localhost:27017/coupons', {
+mongoose.connect('mongodb+srv://ir7avi:QrDNheBivvUmZNBp@cluster0.cfyi8.mongodb.net/coupons', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });

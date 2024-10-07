@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import './header.css'; // Import the CSS file
+import './Header.css'; // Import the CSS file
 
 const Header = ({ categories, selectedCategory, setSelectedCategory }) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);

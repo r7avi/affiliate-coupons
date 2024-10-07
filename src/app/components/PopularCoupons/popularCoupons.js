@@ -20,7 +20,9 @@ const PopularBrandCoupons = () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/popularcoupons`);
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/popularcoupons` // Updated to use environment variable
+      );
       setCoupons(response.data.slice(0, 10)); // Only load 10 popular coupons
       setLoading(false);
     } catch (err) {

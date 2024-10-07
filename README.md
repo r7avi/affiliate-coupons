@@ -28,7 +28,7 @@ Make sure you have the following installed on your machine:
    npm install
    ```
 
-3. Create a `.env.local` file based on the provided `.env.example`:
+3. Create a `.env` file based on the provided `.env.example`:
 
    ```bash
    cp .env.example .env

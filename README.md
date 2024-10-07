@@ -31,7 +31,7 @@ Make sure you have the following installed on your machine:
 3. Create a `.env.local` file based on the provided `.env.example`:
 
    ```bash
-   cp .env.example .env.local
+   cp .env.example .env
    ```
 
 4. Update the `.env.local` file with your API base URL and any other necessary environment variables:

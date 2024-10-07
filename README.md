@@ -34,7 +34,7 @@ Make sure you have the following installed on your machine:
    cp .env.example .env
    ```
 
-4. Update the `.env.local` file with your API base URL and any other necessary environment variables:
+4. Update the `.env` file with your API base URL and any other necessary environment variables:
 
    ```plaintext
    NEXT_PUBLIC_API_BASE_URL=http://localhost:5000

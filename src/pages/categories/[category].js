@@ -18,6 +18,7 @@ const AffiliateCoupons = () => {
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDiscount, setSelectedDiscount] = useState("All");
+  const [selectedBrand, setSelectedBrand] = useState("All");
   const [showPopup, setShowPopup] = useState(false);
   const [selectedCoupon, setSelectedCoupon] = useState(null);
   const [hasMore, setHasMore] = useState(true);
@@ -57,15 +58,20 @@ const AffiliateCoupons = () => {
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
-    filterCoupons(e.target.value, selectedDiscount);
+    filterCoupons(e.target.value, selectedDiscount, selectedBrand);
   };
 
   const handleDiscountFilter = (discount) => {
     setSelectedDiscount(discount);
-    filterCoupons(searchTerm, discount);
+    filterCoupons(searchTerm, discount, selectedBrand);
   };
 
-  const filterCoupons = useCallback((search, discount) => {
+  const handleBrandFilter = (brand) => {
+    setSelectedBrand(brand);
+    filterCoupons(searchTerm, selectedDiscount, brand);
+  };
+
+  const filterCoupons = useCallback((search, discount, brand) => {
     let filtered = coupons;
     if (search) {
       filtered = filtered.filter(
@@ -76,6 +82,9 @@ const AffiliateCoupons = () => {
     }
     if (discount !== "All") {
       filtered = filtered.filter((coupon) => coupon.discount === parseInt(discount));
+    }
+    if (brand !== "All") {
+      filtered = filtered.filter((coupon) => coupon.brand === brand);
     }
     setFilteredCoupons(filtered);
     setDisplayedCoupons(filtered.slice(0, 5));
@@ -116,6 +125,7 @@ const AffiliateCoupons = () => {
   }
 
   const discounts = ["All", ...new Set(coupons.map((coupon) => coupon.discount))];
+  const brands = ["All", ...new Set(coupons.map((coupon) => coupon.brand))];
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -139,6 +149,23 @@ const AffiliateCoupons = () => {
             </li>
           ))}
         </ul>
+        <div className="mt-6 mb-4">
+          <FaFilter className="inline-block mr-2" />
+          <span className="font-semibold">Brands</span>
+        </div>
+        <ul>
+          {brands.map((brand) => (
+            <li
+              key={brand}
+              className={`cursor-pointer py-2 ${
+                selectedBrand === brand ? "text-blue-500 font-semibold" : ""
+              }`}
+              onClick={() => handleBrandFilter(brand)}
+            >
+              {brand}
+            </li>
+          ))}
+        </ul>
       </div>
 
       {/* Main Content */}
@@ -150,8 +177,7 @@ const AffiliateCoupons = () => {
             Home
           </a>
           <FaChevronRight className="mx-2" />
-          <span className="text-gray-900">Coupons</span>
-          <FaChevronRight className="mx-2" />
+
           <span className="text-gray-900">{category}</span>
         </nav>
 

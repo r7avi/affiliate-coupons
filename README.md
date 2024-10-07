@@ -28,13 +28,13 @@ Make sure you have the following installed on your machine:
    npm install
    ```
 
-3. Create a `.env.local` file based on the provided `.env.example`:
+3. Create a `.env` file based on the provided `.env.example`:
 
    ```bash
-   cp .env.example .env.local
+   cp .env.example .env
    ```
 
-4. Update the `.env.local` file with your API base URL and any other necessary environment variables:
+4. Update the `.env` file with your API base URL and any other necessary environment variables:
 
    ```plaintext
    NEXT_PUBLIC_API_BASE_URL=http://localhost:5000

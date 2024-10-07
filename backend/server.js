@@ -48,11 +48,13 @@ app.post('/api/popularcoupons', async (req, res) => {
 
 // API endpoint to get regular coupons
 app.get('/api/regularcoupons', async (req, res) => {
+    const { category } = req.query;
     try {
-        const coupons = await RegularCoupon.find();
+        const query = category ? { category } : {};
+        const coupons = await RegularCoupon.find(query);
         res.json(coupons);
     } catch (error) {
-        res.status(500).json({ message: 'Failed to fetch regular coupons', error });
+        res.status(500).json({ message: 'Failed to fetch coupons', error });
     }
 });
 

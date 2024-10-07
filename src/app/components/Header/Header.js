@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaBars, FaTimes, FaSearch, FaBell } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import Link from 'next/link';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,7 +24,7 @@ const Header = () => {
 
   const navLinks = [
     { name: "Home", href: "#" },
-    { name: "Categories", href: "#", dropdown: ["Fashion", "Electronics", "Food"] },
+    { name: "Categories", href: "#" },
     { name: "Deals", href: "#" },
     { name: "About", href: "#" },
     { name: "Contact", href: "#" },
@@ -35,11 +36,11 @@ const Header = () => {
     { id: 3, text: "Don't miss out on our Food deals!", link: "#" },
   ];
 
+  const categories = ['Mobile & Tablets', 'Fashion', 'Food', 'Travel', 'E-commerce'];
+
   return (
     <header className="bg-white shadow-md">
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between" style={{ paddingLeft: '5%', paddingRight: '5%' }}>
-        
-        {/* Mobile Menu Toggle Button */}
+      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         {isMobile && (
           <button
             onClick={toggleMenu}
@@ -50,7 +51,6 @@ const Header = () => {
           </button>
         )}
 
-        {/* Logo Section */}
         <div className={`flex items-center ${isMobile ? "justify-center w-full" : ""}`}>
           <img
             src="https://images.unsplash.com/photo-1607082349566-187342175e2f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80"
@@ -60,9 +60,8 @@ const Header = () => {
           <h1 className="ml-2 text-xl font-bold text-indigo-600">CouponHub</h1>
         </div>
 
-        {/* Navigation Links */}
         {!isMobile && (
-          <nav className="hidden md:flex space-x-4">
+          <nav className="hidden md:flex items-center space-x-4">
             {navLinks.map((link) => (
               <div key={link.name} className="relative group">
                 <a
@@ -72,16 +71,14 @@ const Header = () => {
                 >
                   {link.name}
                 </a>
-                {link.dropdown && (
+                {link.name === "Categories" && (
                   <div className="absolute z-10 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg">
-                    {link.dropdown.map((item) => (
-                      <a
-                        key={item}
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                      >
-                        {item}
-                      </a>
+                    {categories.map((category) => (
+                      <Link key={category} href={`/categories/${encodeURIComponent(category)}`} passHref>
+                        <span className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                          {category}
+                        </span>
+                      </Link>
                     ))}
                   </div>
                 )}
@@ -90,8 +87,7 @@ const Header = () => {
           </nav>
         )}
 
-        {/* Search, Alerts, and Cart Icons */}
-        <div className="flex items-center space-x-4" style={{ marginRight: '5%' }}> {/* Add right margin to the container */}
+        <div className="flex items-center space-x-4" style={{ marginRight: '5%' }}>
           <button
             onClick={toggleSearch}
             className="text-gray-500 hover:text-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -121,7 +117,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {isMobile && isMenuOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
@@ -139,7 +134,6 @@ const Header = () => {
         </div>
       )}
 
-      {/* Search Bar */}
       {isSearchOpen && (
         <div className="bg-gray-100 py-4">
           <div className="container mx-auto px-4">
@@ -152,7 +146,6 @@ const Header = () => {
         </div>
       )}
 
-      {/* Alerts Dropdown */}
       {showAlerts && (
         <div className="absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg overflow-hidden z-20 border border-gray-200">
           <div className="py-2">

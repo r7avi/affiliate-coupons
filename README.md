@@ -33,13 +33,13 @@ Make sure you have the following installed on your machine:
    ```bash
    cp .env.example .env
    ```
+NOTE : Both frontend and backend, have .env , just copy from env.example    
+
 
 4. Update the `.env` file with your API base URL and any other necessary environment variables:
 
    ```plaintext
    NEXT_PUBLIC_API_BASE_URL=http://localhost:5000
-   
-      
 
 ### Running the Development Server
 

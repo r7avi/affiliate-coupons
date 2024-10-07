@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import './AddCoupon.css'; // Corrected import path
 
-
 const AddCoupon = () => {
     const [brand, setBrand] = useState('');
     const [code, setCode] = useState('');
@@ -23,7 +22,7 @@ const AddCoupon = () => {
         const couponData = { brand, code, expirationDate, category, logo };
 
         try {
-            const response = await fetch('http://localhost:5000/api/coupons', {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/coupons`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

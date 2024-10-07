@@ -28,6 +28,19 @@ Make sure you have the following installed on your machine:
    npm install
    ```
 
+3. Create a `.env.local` file based on the provided `.env.example`:
+
+   ```bash
+   cp .env.example .env.local
+   ```
+
+4. Update the `.env.local` file with your API base URL and any other necessary environment variables:
+
+   ```plaintext
+   NEXT_PUBLIC_API_BASE_URL=http://localhost:5000
+   
+      
+
 ### Running the Development Server
 
 To run both the frontend and backend servers concurrently, use the following command:

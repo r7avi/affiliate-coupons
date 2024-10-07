@@ -8,13 +8,12 @@ import Categories from './components/Categories';
 
 const Home = () => {
     const [coupons, setCoupons] = useState([]);
-    const [categories] = useState(['Mobile & Tablets', 'Fashion', 'Food',
-        'Travel',]);
+    const [categories] = useState(['Mobile & Tablets', 'Fashion', 'Food', 'Travel']);
     const [selectedCategory, setSelectedCategory] = useState('Fashion'); // Default to Fashion
 
     useEffect(() => {
         const fetchCoupons = async () => {
-            const response = await fetch('http://localhost:5000/api/coupons');
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/coupons`);
             const data = await response.json();
             setCoupons(data);
         };

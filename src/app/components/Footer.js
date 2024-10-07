@@ -1,3 +1,4 @@
+import Link from 'next/link'; // Import Link from next/link
 import './Footer.css';
 
 const Footer = () => {
@@ -7,10 +8,10 @@ const Footer = () => {
               <p>&copy; 2023 My Coupon Site. All rights reserved.</p>
               <p>Address: 123 Coupon St, Coupon City, CO 12345</p>
               <div className="footer-links">
-                  <a href="/about">About Us</a>
-                  <a href="/contact">Contact</a>
-                  <a href="/privacy">Privacy Policy</a>
-                  <a href="/terms">Terms of Service</a>
+                  <Link href="/about">About Us</Link>
+                  <Link href="/contact">Contact</Link>
+                  <Link href="/privacy">Privacy Policy</Link>
+                  <Link href="/terms">Terms of Service</Link>
               </div>
           </div>
       </footer>

@@ -2,14 +2,15 @@
 "use client"; // Add this line to mark the component as a client component
 
 import React, { useEffect, useState } from 'react';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Categories from './components/Categories';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import ImageSlider from './components/Home/slider';
+import CouponSlider from './components/CouponSlider/couponslider';
+import PopularBrandCoupons from './components/PopularCoupons/popularCoupons';
 
 const Home = () => {
     const [coupons, setCoupons] = useState([]);
-    const [categories] = useState(['Mobile & Tablets', 'Fashion', 'Food', 'Travel']);
-    const [selectedCategory, setSelectedCategory] = useState('Fashion'); // Default to Fashion
+    const [selectedCategory, setSelectedCategory] = useState('Mobile & Tablets'); // Default to Fashion
 
     useEffect(() => {
         const fetchCoupons = async () => {
@@ -23,15 +24,14 @@ const Home = () => {
 
     return (
         <div>
-            <Header categories={categories} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
+            <Header selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
+            
             <main>
-                <section className="banner">
-                    <h2>Special Offers</h2>
-                    <p>Check out our latest deals!</p>
-                </section>
+                <ImageSlider />
+                <PopularBrandCoupons  />
+                <CouponSlider selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
 
-                {/* Render the Categories component based on the selected category */}
-                <Categories selectedCategory={selectedCategory} coupons={coupons} />
+
             </main>
             <Footer /> {/* Ensure Footer is included here */}
         </div>

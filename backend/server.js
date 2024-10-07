@@ -1,7 +1,10 @@
-// backend/server.js
+require('dotenv').config({ path: './backend/.env' });
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const PopularCoupon = require("./models/PopularCoupon");
+const RegularCoupon = require("./models/RegularCoupon");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -12,39 +15,61 @@ app.use(express.json());
 
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+})
+    .then(() => {
+        console.log('Connected to MongoDB');
+    })
+    .catch((err) => {
+        console.error('Error connecting to MongoDB:', err);
+    });
+
+// API endpoint to get popular coupons
+app.get('/api/popularcoupons', async (req, res) => {
+    try {
+        const coupons = await PopularCoupon.find();
+        res.json(coupons);
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to fetch popular coupons', error });
+    }
 });
 
-// Define a Coupon model
-const couponSchema = new mongoose.Schema({
-    brand: String,
-    code: String,
-    expirationDate: Date,
-    category: String, // Add category field
-    logo: String, // Add logo field for brand logos
-});
-
-const Coupon = mongoose.model('Coupon', couponSchema);
-
-// API endpoint to get coupons
-app.get('/api/coupons', async (req, res) => {
-    const coupons = await Coupon.find();
-    res.json(coupons);
-});
-
-// API endpoint to add a coupon
-app.post('/api/coupons', async (req, res) => {
+// API endpoint to add a popular coupon
+app.post('/api/popularcoupons', async (req, res) => {
     const { brand, code, expirationDate, category, logo } = req.body;
-    const newCoupon = new Coupon({ brand, code, expirationDate, category, logo });
+    const newCoupon = new PopularCoupon({ brand, code, expirationDate, category, logo });
+
     try {
         await newCoupon.save();
         res.status(201).json(newCoupon);
     } catch (error) {
-        res.status(400).json({ message: 'Error adding coupon', error });
+        res.status(400).json({ message: 'Error adding popular coupon', error });
     }
 });
 
+// API endpoint to get regular coupons
+app.get('/api/regularcoupons', async (req, res) => {
+    try {
+        const coupons = await RegularCoupon.find();
+        res.json(coupons);
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to fetch regular coupons', error });
+    }
+});
+
+// API endpoint to add a regular coupon
+app.post('/api/regularcoupons', async (req, res) => {
+    const { brand, code, expirationDate, category, logo } = req.body;
+    const newCoupon = new RegularCoupon({ brand, code, expirationDate, category, logo });
+
+    try {
+        await newCoupon.save();
+        res.status(201).json(newCoupon);
+    } catch (error) {
+        res.status(400).json({ message: 'Error adding regular coupon', error });
+    }
+});
+
+// Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

@@ -13,24 +13,21 @@ const couponSchema = new mongoose.Schema({
     code: String,
     expirationDate: Date,
     category: String, // Add category field
+    logo: String, // Add logo field
 });
 
-const Coupon = mongoose.model('Coupon', couponSchema);
+const Coupon = mongoose.model('PopularCoupon', couponSchema);
 
 // Function to add coupons
 const addCoupons = async () => {
     const coupons = [
-        { brand: 'Brand A', code: 'SAVE20', expirationDate: new Date('2023-12-31'), category: 'Mobile & Tablets' },
-        { brand: 'Brand B', code: 'FREESHIP', expirationDate: new Date('2023-11-30'), category: 'Fashion' },
-        { brand: 'Brand C', code: 'WELCOME10', expirationDate: new Date('2024-01-15'), category: 'Food' },
-        { brand: 'Brand D', code: 'SUMMER30', expirationDate: new Date('2024-06-30'), category: 'Travel' },
-        { brand: 'Brand E', code: 'ELECTRO15', expirationDate: new Date('2024-03-31'), category: 'Mobile & Tablets' },
-        { brand: 'Brand F', code: 'FASHION25', expirationDate: new Date('2024-02-28'), category: 'Fashion' },
-        { brand: 'Brand G', code: 'FOODIE5', expirationDate: new Date('2024-04-15'), category: 'Food' },
-        { brand: 'Brand H', code: 'TRAVEL10', expirationDate: new Date('2024-05-20'), category: 'Travel' },
-        { brand: 'Brand I', code: 'MOBILE30', expirationDate: new Date('2024-07-01'), category: 'Mobile & Tablets' },
-        { brand: 'Brand J', code: 'FASHION50', expirationDate: new Date('2024-08-15'), category: 'Fashion' },
-    ];
+        { brand: 'Swiggy', code: 'SWIGGY15', expirationDate: new Date('2023-11-30'), category: 'Food', logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d4/Swiggy_Logo.svg/330px-Swiggy_Logo.svg.png' },
+        { brand: 'Samsung', code: 'SAMSUNG10', expirationDate: new Date('2024-01-15'), category: 'Mobile & Tablets', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Samsung_Black_icon.svg/330px-Samsung_Black_icon.svg.png' },
+        { brand: 'Zomato', code: 'ZOMATO20', expirationDate: new Date('2023-12-31'), category: 'Food', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Zomato_Logo.svg/330px-Zomato_Logo.svg.png' },
+        { brand: 'Puma', code: 'PUMA25', expirationDate: new Date('2024-06-30'), category: 'Fashion', logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/da/Puma_complete_logo.svg/330px-Puma_complete_logo.svg.png' },
+        { brand: 'Nike', code: 'NIKE30', expirationDate: new Date('2024-03-31'), category: 'Fashion', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/330px-Logo_NIKE.svg.png' },
+        { brand: 'Adidas', code: 'ADIDAS20', expirationDate: new Date('2024-02-28'), category: 'Fashion', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Adidas_2022_logo.svg/225px-Adidas_2022_logo.svg.png' },
+ ];
 
     try {
         await Coupon.insertMany(coupons);

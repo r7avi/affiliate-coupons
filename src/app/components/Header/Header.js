@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaBars, FaTimes, FaSearch, FaBell } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+
 import Link from 'next/link';
 import axios from 'axios';
-import CouponPopup from '../CouponPopup/CouponPopup'; // Ensure this import is correct
+import CouponPopup from '../CouponPopup/CouponPopup';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,9 +12,10 @@ const Header = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [showAlerts, setShowAlerts] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredCoupons, setFilteredCoupons] = useState([]); // Store filtered coupons
+  const [filteredCoupons, setFilteredCoupons] = useState([]);
   const [selectedCoupon, setSelectedCoupon] = useState(null);
-  const searchRef = useRef(null); // Create a ref for the search bar
+  const [isCategoryOpen, setIsCategoryOpen] = useState(false); // State for category dropdown
+  const searchRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -27,6 +29,7 @@ const Header = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
   const toggleAlerts = () => setShowAlerts(!showAlerts);
+  const toggleCategories = () => setIsCategoryOpen(!isCategoryOpen); // Toggle category dropdown
 
   // Fetch coupons based on the search term
   const fetchCoupons = async (term) => {
@@ -72,15 +75,15 @@ const Header = () => {
     };
   }, [isSearchOpen]);
 
+  // Updated navLinks array to include Categories
   const navLinks = [
     { name: "Home", href: "#" },
-    { name: "Categories", href: "#" },
+    { name: "Categories", href: "#" }, // Added Categories here
     { name: "Deals", href: "#" },
     { name: "About", href: "#" },
     { name: "Contact", href: "#" },
   ];
 
-  
   const categories = ['Mobile & Tablets', 'Fashion', 'Food', 'Travel', 'E-commerce'];
 
   return (
@@ -107,19 +110,20 @@ const Header = () => {
 
         <nav className={`hidden md:flex items-center space-x-4`}>
           {navLinks.map((link) => (
-            <div key={link.name} className="relative group">
+            <div key={link.name} className="relative">
               <a
                 href={link.href}
                 className="text-gray-500 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                onClick={link.name === "Categories" ? toggleCategories : null} // Toggle dropdown on click
                 aria-label={link.name}
               >
                 {link.name}
               </a>
-              {link.name === "Categories" && (
-                <div className="absolute z-10 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg">
+              {link.name === "Categories" && isCategoryOpen && ( // Conditional rendering for dropdown
+                <div className="absolute z-10 bg-white border border-gray-200 rounded-md shadow-lg">
                   {categories.map((category) => (
                     <Link key={category} href={`/categories/${encodeURIComponent(category)}`} passHref>
-                      <span className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                      <span className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
                         {category}
                       </span>
                     </Link>
@@ -160,14 +164,27 @@ const Header = () => {
         <div className="md:hidden bg-gray-100">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-gray-500 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium"
-                aria-label={link.name}
-              >
-                {link.name}
-              </a>
+              <div key={link.name} className="relative">
+                <a
+                  href={link.href}
+                  className="text-gray-500 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium"
+                  onClick={link.name === "Categories" ? toggleCategories : null} // Toggle dropdown on click
+                  aria-label={link.name}
+                >
+                  {link.name}
+                </a>
+                {link.name === "Categories" && isCategoryOpen && ( // Conditional rendering for mobile dropdown
+                  <div className="bg-white border border-gray-200 rounded-md shadow-lg">
+                    {categories.map((category) => (
+                      <Link key={category} href={`/categories/${encodeURIComponent(category)}`} passHref>
+                        <span className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+                          {category}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         </div>

@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# My Affiliate Coupons
+
+This is a Next.js project that provides a platform for users to find and use affiliate coupon codes. The application features a user-friendly interface to browse coupons by category, with the ability to reveal coupon codes on click.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Make sure you have the following installed on your machine:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Node.js (v14 or later)
+- npm (Node package manager)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Clone the repository:
 
-## Learn More
+   ```bash
+   git clone https://github.com/yourusername/my-affiliate-coupons.git
+   cd my-affiliate-coupons
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. Install the dependencies for both the frontend and backend:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   npm install
+   cd backend
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Running the Development Server
 
-## Deploy on Vercel
+To run both the frontend and backend servers concurrently, use the following command:
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This will start the Next.js development server and the backend server. You can access the application at [http://localhost:3000](http://localhost:3000).
+
+### Project Structure
+
+- **src/**: Contains the main application code.
+  - **app/**: Contains the Next.js pages and components.
+  - **globals.css**: Global styles for the application.
+- **backend/**: Contains the backend server code.
+  - **server.js**: The main server file for handling API requests.
+  - **addCoupons.js**: Script to add initial coupon data to the database.
+- **package.json**: Contains project metadata and dependencies for both frontend and backend.
+
+### Features
+
+- Browse coupons by category (Electronics, Fashion, Home & Garden).
+- Click to reveal coupon codes.
+- Responsive design for a better user experience.
+
+### Technologies Used
+
+- **Frontend**: Next.js, React, Tailwind CSS
+- **Backend**: Node.js, Express, MongoDB (with Mongoose)
+
+### Contributing
+
+Contributions are welcome! Please feel free to submit a pull request or open an issue for any suggestions or improvements.
+
+### License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+### Acknowledgments
+
+- [Next.js](https://nextjs.org/) - The React framework for production.
+- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework.
+- [MongoDB](https://www.mongodb.com/) - A NoSQL database for storing coupon data.

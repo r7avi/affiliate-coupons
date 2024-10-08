@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const PopularCoupon = require("./models/PopularCoupon");
 const RegularCoupon = require("./models/RegularCoupon");
-
+const MONGODB_URI ="mongodb+srv://ir7avi:QrDNheBivvUmZNBp@cluster0.cfyi8.mongodb.net/coupons";
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect(MONGODB_URI, {
 })
     .then(() => {
         console.log('Connected to MongoDB');
